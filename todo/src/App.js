@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const style ={
+    fontSize: 40
+  };
+  const var1 = 'variable';
+  const number = 6;
+  const number2 = 23;
+  const bool = true;
   return (
     <div className="App">
       <header className="App-header">
@@ -10,14 +17,20 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="Jsx">
+          <p style={style}>Style</p>
+          <p>{var1}</p>
+          <p>{number}</p>
+          <p>{number * number2}</p>
+          <p style={{fontSize: 50, color: 'pink'}}>{bool && 'logical operation'}</p>
+          <p>{bool ? 'true': 'false'}</p>
+          <p>
+            {undefined}, 
+            {null}, 
+            {false}, 
+            {true}
+          </p>
+        </div>
       </header>
     </div>
   );
