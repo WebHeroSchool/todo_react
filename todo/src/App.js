@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import{count, length} from "./number";
 
 function App() {
   const style ={
@@ -17,6 +18,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <p style={{fontSize: 30, color: '#61DAFB'}}>Результат: {count * length}</p>
         <div className="Jsx">
           <p style={style}>Style</p>
           <p>{var1}</p>
