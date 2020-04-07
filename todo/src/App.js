@@ -1,16 +1,15 @@
 import React from 'react';
 
 const element = (<div>
-  <p style ={{
+  <h1 style ={{
   textAlign: 'center',
-  fontSize: 36,
   color: 'pink',
-  }}>My App</p>
+  }}>My App</h1>
 </div>);
 
 const ItemList = () => (
   <ul style ={{
-    fontSize: 24,
+    fontSize: 20,
   }}>
     <li>1</li>
     <li>2</li>
