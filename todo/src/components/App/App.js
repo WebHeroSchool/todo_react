@@ -6,10 +6,10 @@ import styles from './App.module.css';
 
 const App = () => {
   const items = [
-    { id: 0, value: 'Выполнить задание' },
-    { id: 1, value: 'Приготовить поесть' },
-    { id: 2, value: 'Убрать в комнате' },
-    { id: 3, value: 'Сделать зарядку' }
+    { id: 0, value: 'Выполнить задание', isDone: true },
+    { id: 1, value: 'Приготовить поесть', isDone: false },
+    { id: 2, value: 'Убрать в комнате', isDone: false },
+    { id: 3, value: 'Сделать зарядку', isDone: true }
   ];
 
   return (
