@@ -1,0 +1,20 @@
+
+.wrap {
+    display: flex;
+    justify-content: center;
+}
+.item_list {
+    padding: 0; 
+    width: 90%;
+    
+}
+   
+.item {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+} 
+
+.icon_btn {
+    display: none;
+}
