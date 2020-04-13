@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 const ItemList = ({ items }) => (
   <div className={styles.wrap}>
     <ul  className={styles.item_list}>
-      {items.map(item => <li  key={item.value} className={styles.item}>
+      {items.map(item => <li  key={item.id} className={styles.item}>
         <FormControlLabel
           control={
             <Checkbox checked={item.isDone}
