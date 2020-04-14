@@ -13,7 +13,9 @@ class App extends React.Component {
       { id: 3, value: 'Сделать зарядку', isDone: false }
     ]
   }
-  
+
+  onClickDone = isDone => console.log(isDone);
+
   render() {
     const itemsToDo = this.state.items.filter(item => item.isDone === false)
   
@@ -22,7 +24,7 @@ class App extends React.Component {
         <div className={styles.content}>
           <h1 className={styles.title}>TODOS:</h1>
           <InputItem />
-          <ItemList items={this.state.items} />
+          <ItemList items={this.state.items} onClickDone={this.onClickDone}/>
           <Footer count={itemsToDo.length} />
         </div>
       </div>);

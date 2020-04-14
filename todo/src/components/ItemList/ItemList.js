@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 
 
-const ItemList = ({ items }) => (
+const ItemList = ({ items, onClickDone}) => (
   <div className={styles.wrap}>
     <ul  className={styles.item_list}>
       {items.map(item => <li  key={item.id} className={styles.item}>
@@ -19,6 +19,7 @@ const ItemList = ({ items }) => (
             <Checkbox checked={item.isDone}
               color="secondary"
               icon={<FavoriteBorder />} checkedIcon={<Favorite />} 
+              onClick={() => onClickDone(item.isDone)}
             />
           }
           label=<Item value={item.value} isDone={item.isDone} />
