@@ -5,22 +5,24 @@ import Footer from '../Footer/Footer';
 import styles from './App.module.css';
 
 class App extends React.Component {
-  render() {
-    const items = [
+  state = {
+    items: [
       { id: 0, value: 'Выполнить задание', isDone: true },
       { id: 1, value: 'Приготовить поесть', isDone: false },
       { id: 2, value: 'Убрать в комнате', isDone: true },
       { id: 3, value: 'Сделать зарядку', isDone: false }
-    ];
+    ]
+  }
   
-    const itemsToDo = items.filter(item => item.isDone === false)
+  render() {
+    const itemsToDo = this.state.items.filter(item => item.isDone === false)
   
     return (
       <div className={styles.wrap}>
         <div className={styles.content}>
           <h1 className={styles.title}>TODOS:</h1>
           <InputItem />
-          <ItemList items={items} />
+          <ItemList items={this.state.items} />
           <Footer count={itemsToDo.length} />
         </div>
       </div>);
