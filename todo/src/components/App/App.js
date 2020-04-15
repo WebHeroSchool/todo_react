@@ -22,10 +22,16 @@ class App extends React.Component {
       if (item.id === id) {
         newItem.isDone = !item.isDone;
       }
+
       return newItem;
     });
-    this.setState({ items: newItemList});
 
+    this.setState({ items: newItemList});
+  }
+
+  onClickDelete = id => {
+    const newItemList = this.state.items.filter(item => item.id !== id);
+    this.setState({ items: newItemList });
   }
 
   render() {
@@ -36,7 +42,10 @@ class App extends React.Component {
         <div className={styles.content}>
           <h1 className={styles.title}>TODOS:</h1>
           <InputItem />
-          <ItemList items={this.state.items} onClickDone={this.onClickDone}/>
+          <ItemList items={this.state.items} 
+            onClickDone={this.onClickDone} 
+            onClickDelete={this.onClickDelete}
+          />
           <Footer count={itemsToDo.length} />
         </div>
       </div>);

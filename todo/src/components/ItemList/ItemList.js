@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 
 
-const ItemList = ({ items, onClickDone, id}) => (
+const ItemList = ({ items, onClickDone, onClickDelete }) => (
   <div className={styles.wrap}>
     <ul  className={styles.item_list}>
       {items.map(item => <li  key={item.id} className={styles.item}>
@@ -26,7 +26,7 @@ const ItemList = ({ items, onClickDone, id}) => (
           label=<Item value={item.value} isDone={item.isDone} />
         />
 
-        <IconButton aria-label='delete'>
+        <IconButton aria-label='delete' onClick={() => onClickDelete(item.id)}>
           <DeleteOutlinedIcon fontSize='small' />
         </IconButton>
       </li>)}
