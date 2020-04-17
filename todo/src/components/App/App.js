@@ -3,6 +3,8 @@ import ItemList from '../ItemList/ItemList';
 import InputItem from '../InputItem/InputItem';
 import Footer from '../Footer/Footer';
 import styles from './App.module.css';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 class App extends React.Component {
   state = {
@@ -11,7 +13,9 @@ class App extends React.Component {
       { id: 1, value: 'Приготовить поесть', isDone: false },
       { id: 2, value: 'Убрать в комнате', isDone: true },
       { id: 3, value: 'Сделать зарядку', isDone: false }
-    ]
+    ],
+    count: 4,
+    empty: false
     
   }
 
@@ -29,9 +33,25 @@ class App extends React.Component {
     this.setState({ items: newItemList});
   }
 
-  onClickDelete = id => {
-    const newItemList = this.state.items.filter(item => item.id !== id);
-    this.setState({ items: newItemList });
+  onClickDelete = id => this.setState({ items: this.state.items.filter(item => item.id !== id) });
+  
+  onClickAdd = value => {
+    if (value !== '') {
+      this.setState(state => ({
+        items: [
+          ...state.items,
+          {
+            value,
+            isDone: false,
+            id: state.count + 1
+          }
+        ],
+        count: state.count + 1,
+        empty: false
+      }));
+    } else {
+      this.setState(state => ({ empty: true }))
+    }
   }
 
   render() {
@@ -39,15 +59,18 @@ class App extends React.Component {
   
     return (
       <div className={styles.wrap}>
-        <div className={styles.content}>
-          <h1 className={styles.title}>TODOS:</h1>
-          <InputItem />
-          <ItemList items={this.state.items} 
-            onClickDone={this.onClickDone} 
-            onClickDelete={this.onClickDelete}
-          />
-          <Footer count={itemsToDo.length} />
-        </div>
+        <Card>
+          <CardContent className={styles.content}>
+            <h1 className={styles.title}>TODOS:</h1>
+            <InputItem onClickAdd={this.onClickAdd} empty={this.state.empty} />
+            <ItemList 
+              items={this.state.items} 
+              onClickDone={this.onClickDone} 
+              onClickDelete={this.onClickDelete}
+            />
+            <Footer count={itemsToDo.length} />
+          </CardContent> 
+        </Card>
       </div>);
   }
 }
