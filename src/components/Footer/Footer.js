@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Footer.module.css';
 
 
-
 const Footer = ({ count }) => (
   <footer className={styles.wrap}>
     <div className={styles.content}>
@@ -18,5 +17,11 @@ const Footer = ({ count }) => (
       </div>
     </div>
   </footer>);
+
+Footer.defaultProps = {
+
+  count: 'No'
+
+};
 
 export default Footer;

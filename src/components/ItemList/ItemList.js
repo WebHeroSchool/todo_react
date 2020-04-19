@@ -16,7 +16,8 @@ const ItemList = ({ items, onClickDone, onClickDelete }) => (
       {items.map(item => <li  key={item.id} className={styles.item}>
         <FormControlLabel
           control={
-            <Checkbox checked={item.isDone}
+            <Checkbox 
+              checked={item.isDone}
               color="secondary"
               icon={<FavoriteBorder />} 
               checkedIcon={<Favorite />} 
@@ -34,4 +35,9 @@ const ItemList = ({ items, onClickDone, onClickDelete }) => (
   </div>
 );
 
+Checkbox.defaultProps = {
+  isDone: false
+}
+
 export default ItemList;
+

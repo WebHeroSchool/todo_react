@@ -10,4 +10,10 @@ const Item = ({ value, isDone }) => (<span className={
     })
 }>{ value }</span>);
 
+Item.defaultProps = {
+    value: 'task not found',
+    isDone: false
+}
+
 export default Item; 
+
