@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 class App extends React.Component {
   state = {
     items: [
-      { id: 0, value: 'Выполнить задание', isDone: true  },
+      { id: 0, value: 'Выполнить задание', isDone: true },
       { id: 1, value: 'Приготовить поесть', isDone: false },
       { id: 2, value: 'Убрать в комнате', isDone: true },
       { id: 3, value: 'Сделать зарядку', isDone: false }

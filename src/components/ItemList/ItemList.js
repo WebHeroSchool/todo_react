@@ -1,6 +1,7 @@
 import React from 'react';
 import Item from '../Item/Item';
 import styles from './ItemList.module.css'
+import PropTypes from 'prop-types'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
@@ -37,7 +38,13 @@ const ItemList = ({ items, onClickDone, onClickDelete }) => (
 
 Checkbox.defaultProps = {
   isDone: false
-}
+};
+
+ItemList.propTypes = {
+  items: PropTypes.array.isRequired,
+  onClickDone: PropTypes.func.isRequired,
+  onClickDelete: PropTypes.func.isRequired
+};
 
 export default ItemList;
 
