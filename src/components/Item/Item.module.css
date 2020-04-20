@@ -1,3 +1,10 @@
+
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+}
+
 .item {
     color: #333;
 }
