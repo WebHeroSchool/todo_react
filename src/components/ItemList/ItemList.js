@@ -14,6 +14,7 @@ const ItemList = ({ items, onClickDone, onClickDelete }) => (
           value={item.value}
           isDone={item.isDone}
           id={item.id}
+          
         />
       </li>)}
     </ul>

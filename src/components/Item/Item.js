@@ -10,21 +10,23 @@ import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import IconButton from '@material-ui/core/IconButton';
 
 class Item extends React.Component {
+
     componentDidMount() {
-        console.log('componentDidMount');
+        this.timerID = setInterval(() => console.log('memory leak'), 1000);
     };
-    
+
     componentDidUpdate() {
         console.log('componentDidUpdate');
     };
     
     componentWillUnmount() {
-        console.log('componentWillUnmount');
+        clearInterval(this.timerID)
     };
 
     render() {
-        const { value, isDone, onClickDone, id, onClickDelete } = this.props;
+        const { value, isDone, onClickDone, id, onClickDelete} = this.props;
         return (
+
             <div className={styles.wrap}>
                 <FormControlLabel
                 control={
@@ -36,7 +38,7 @@ class Item extends React.Component {
                 onClick={() => onClickDone(id)}
                 />
                 }
-                label= {<span className={
+                label={<span className={
                     classnames({
                         [styles.item]: true,
                         [styles.done]: isDone
@@ -58,10 +60,6 @@ Item.defaultProps = {
     value: 'task not found',
     isDone: false
 };
-
-Checkbox.defaultProps = {
-    isDone: false
-  };
 
 Item.propTypes = {
     value: PropTypes.string.isRequired,
