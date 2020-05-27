@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ItemList from '../ItemList/ItemList';
 import InputItem from '../InputItem/InputItem';
 import Footer from '../Footer/Footer';
@@ -6,8 +6,8 @@ import styles from './App.module.css';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-class App extends React.Component {
-  state = {
+const App = () => {
+  const initialState = {
     items: [
       { id: 0, value: 'Выполнить задание', isDone: true },
       { id: 1, value: 'Приготовить поесть', isDone: false },
@@ -16,64 +16,68 @@ class App extends React.Component {
     ],
     count: 4,
     empty: false
-    
   }
 
-  onClickDone = id => {
-    const newItemList = this.state.items.map(item => {
+  const [items, setItems] = useState(initialState.items);
+  const [count, setCount] = useState(initialState.count);
+  const [empty, setEmpty] = useState(initialState.empty);
+
+  useEffect(() => {console.log('componentDidMount')}, []);
+	useEffect(() => {console.log('componentDidUpdate')}, [items]);
+
+  const onClickDone = id => {
+    const newItemList = items.map(item => {
       const newItem = { ...item };
-
+      
       if (item.id === id) {
-        newItem.isDone = !item.isDone;
+        newItem.isDone = !item.isDone
       }
-
-      return newItem;
+      return newItem
     });
-
-    this.setState({ items: newItemList});
+    setItems(newItemList);
   }
 
-  onClickDelete = id => this.setState({ items: this.state.items.filter(item => item.id !== id) });
-  
-  onClickAdd = value => {
+  const onClickDelete = id => {
+    const newItemList = items.filter(item => item.id !== id);
+    setItems(newItemList);
+    setCount(count => count - 1);
+  }
+
+  const itemsToDo = items.filter(item => item.isDone === false)
+ 
+  const onClickAdd = value => {
     if (value !== '') {
-      this.setState(state => ({
-        items: [
-          ...state.items,
-          {
-            value,
-            isDone: false,
-            id: state.count + 1
-          }
-        ],
-        count: state.count + 1,
-        empty: false
-      }));
+      const newItemList = [
+        ...items,
+        {
+          value,
+          isDone: false,
+          id: count + 1
+        }
+      ];
+      setItems(newItemList);
+      setCount(count => count + 1);
     } else {
-      this.setState(state => ({ empty: true }))
+      setEmpty(empty => !empty)
     }
   }
 
-  render() {
-    const itemsToDo = this.state.items.filter(item => item.isDone === false)
-  
-    return (
-      <div className={styles.wrap}>
-        <Card>
-          <CardContent className={styles.content}>
-            <h1 className={styles.title}>TODOS:</h1>
-            <InputItem onClickAdd={this.onClickAdd} empty={this.state.empty} />
-            <ItemList 
-            items={this.state.items}
-            onClickDone={this.onClickDone}
-            onClickDelete={this.onClickDelete}
-            />
-           
-            <Footer count={itemsToDo.length} />
-          </CardContent> 
-        </Card>
-      </div>);
-  }
+  return (
+    <div className={styles.wrap}>
+      <Card>
+        <CardContent className={styles.content}>
+          <h1 className={styles.title}>TODOS:</h1>
+          <InputItem onClickAdd={onClickAdd} empty={empty} />
+          <ItemList 
+            items={items}
+            onClickDone={onClickDone}
+            onClickDelete={onClickDelete}
+          />
+          <Footer count={itemsToDo.length} />
+        </CardContent> 
+      </Card>
+    </div>
+  )
 }
 
 export default App;

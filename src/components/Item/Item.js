@@ -10,19 +10,6 @@ import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import IconButton from '@material-ui/core/IconButton';
 
 class Item extends React.Component {
-
-    componentDidMount() {
-        this.timerID = setInterval(() => console.log('memory leak'), 1000);
-    };
-
-    componentDidUpdate() {
-        console.log('componentDidUpdate');
-    };
-    
-    componentWillUnmount() {
-        clearInterval(this.timerID)
-    };
-
     render() {
         const { value, isDone, onClickDone, id, onClickDelete} = this.props;
         return (

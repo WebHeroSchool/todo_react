@@ -17,7 +17,6 @@ class InputItem extends React.Component {
     };
 
     render() {
-        const { onClickAdd } = this.props;
         const emptyField = this.props.empty;
         let inputField;
         
