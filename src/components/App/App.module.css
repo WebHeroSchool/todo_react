@@ -1,0 +1,10 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    font-family:  "Comic Sans MS", cursive, sans-serif;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: grey
+  }

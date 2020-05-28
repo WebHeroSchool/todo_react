@@ -1,0 +1,37 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+}
+.items_count {
+    font-size: 14px;
+}
+.content {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.button, .btn_delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Comic Sans MS", cursive, sans-serif; 
+}
+
+.btn_delete{
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+}
+
+.button:hover, 
+.btn_delete:hover {
+    border: 2px solid pink;
+    border-radius: 3px;
+}
+
+
+
+   

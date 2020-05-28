@@ -1,0 +1,15 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  font-family:  "Comic Sans MS", cursive, sans-serif;
+}
+.content {
+  display: flex; 
+  flex-direction: column;
+  width: 500px; 
+}
+
+.title {
+  color: pink;
+  text-align: center;
+}

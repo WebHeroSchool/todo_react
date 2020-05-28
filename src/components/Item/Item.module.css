@@ -1,0 +1,16 @@
+
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+}
+
+.item {
+    color: #333;
+}
+
+.done {
+    color: #FFC0CB;
+    text-decoration: line-through;
+}
+

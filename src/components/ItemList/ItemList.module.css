@@ -1,0 +1,9 @@
+.item_list {
+    padding: 0; 
+    width: 90%;
+    list-style-type: none;
+}
+   
+.icon_btn {
+    display: none;
+}
