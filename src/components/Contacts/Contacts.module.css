@@ -1,0 +1,9 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  width: 500px;
+}
+
+.title {
+  color: pink;
+}

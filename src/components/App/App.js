@@ -1,85 +1,36 @@
-import React, {useState, useEffect} from 'react';
-import ItemList from '../ItemList/ItemList';
-import InputItem from '../InputItem/InputItem';
-import Footer from '../Footer/Footer';
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import styles from './App.module.css';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import About from '../About/About';
+import Contacts from '../Contacts/Contacts';
+import Todo from '../Todo/Todo';
 
-const App = () => {
-  const initialState = {
-    items: [
-      { id: 0, value: 'Выполнить задание', isDone: true },
-      { id: 1, value: 'Приготовить поесть', isDone: false },
-      { id: 2, value: 'Убрать в комнате', isDone: true },
-      { id: 3, value: 'Сделать зарядку', isDone: false }
-    ],
-    count: 4,
-    empty: false
-  }
-
-  const [items, setItems] = useState(initialState.items);
-  const [count, setCount] = useState(initialState.count);
-  const [empty, setEmpty] = useState(initialState.empty);
-
-  useEffect(() => {console.log('componentDidMount')}, []);
-	useEffect(() => {console.log('componentDidUpdate')}, [items]);
-
-  const onClickDone = id => {
-    const newItemList = items.map(item => {
-      const newItem = { ...item };
-      
-      if (item.id === id) {
-        newItem.isDone = !item.isDone
-      }
-      return newItem
-    });
-    setItems(newItemList);
-  }
-
-  const onClickDelete = id => {
-    const newItemList = items.filter(item => item.id !== id);
-    setItems(newItemList);
-    setCount(count => count - 1);
-  }
-
-  const itemsToDo = items.filter(item => item.isDone === false)
- 
-  const onClickAdd = value => {
-    if (value !== '') {
-      const newItemList = [
-        ...items,
-        {
-          value,
-          isDone: false,
-          id: count + 1
-        }
-      ];
-      setItems(newItemList);
-      setCount(count => count + 1);
-    } else {
-      setEmpty(empty => !empty)
-    }
-  }
-
-  return (
+const App = () => (
+  <Router>
     <div className={styles.wrap}>
       <Card>
-        <CardContent className={styles.content}>
-          <h1 className={styles.title}>TODOS:</h1>
-          <InputItem onClickAdd={onClickAdd} empty={empty} />
-          <ItemList 
-            items={items}
-            onClickDone={onClickDone}
-            onClickDelete={onClickDelete}
-          />
-          <Footer count={itemsToDo.length} />
-        </CardContent> 
+        <MenuList>
+          <Link exact to="/" className={styles.link}><MenuItem>Обо мне</MenuItem></Link>
+          <Link to="/contacts" className={styles.link}><MenuItem>Контакты</MenuItem></Link>
+          <Link to="/todo" className={styles.link}><MenuItem>Список дел</MenuItem></Link>
+        </MenuList>
+      </Card>
+      <Card>
+        <Switch>
+          <Route path='/' exact component={About} />
+          <Route path='/contacts' component={Contacts} />
+          <Route path='/todo' component={Todo} />
+        </Switch>
       </Card>
     </div>
-  )
-}
+  </Router> 
+)
 
 export default App;
+
  
 
