@@ -14,7 +14,7 @@ const App = () => (
     <div className={styles.wrap}>
       <Card>
         <MenuList>
-          <Link exact to="/" className={styles.link}><MenuItem>Обо мне</MenuItem></Link>
+          <Link exact={"true"} to="/" className={styles.link}><MenuItem>Обо мне</MenuItem></Link>
           <Link to="/contacts" className={styles.link}><MenuItem>Контакты</MenuItem></Link>
           <Link to="/todo" className={styles.link}><MenuItem>Список дел</MenuItem></Link>
         </MenuList>
