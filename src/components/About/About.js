@@ -1,8 +1,15 @@
 import React from 'react';
 import { Octokit }  from '@octokit/rest';
 import styles from './About.module.css';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import Repos from '../Repos/Repos';
+
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import vkIcon from './../Img/vk.svg';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Preloader from '../Preloader/Preloader';
+
 
 const octokit = new Octokit();
 
@@ -10,8 +17,6 @@ class About extends React.Component {
 
   state = {
     isLoading: true,
-    fetchReposFailure: false,
-    repoList: [],
     fetchUserFailure: false,
     userInfo: {}
   }
@@ -31,79 +36,77 @@ class About extends React.Component {
         fetchUserFailure: true
       })
     });
-
-    octokit.repos.listForUser({
-      username: 'anastasiamiheeva'
-    }).then(({ data }) => {
-      this.setState({
-        isLoading: false,
-        fetchReposFailure: false,
-        repoList: data
-      })
-    }).catch(err => {
-      this.setState({
-        isLoading: false,
-        fetchReposFailure: true
-      })
-    });
   }
 
   render() {
-    const { isLoading, repoList, fetchReposFailure, userInfo, fetchUserFailure } = this.state;
-    const Preloader = () => <div className={styles.preloader}></div>;
-    return (
+    const { isLoading, userInfo, fetchUserFailure } = this.state;
+    return ( 
       <div className={styles.wrap}>
-        <div>{ isLoading && <Preloader />}</div>
+        { isLoading && <Preloader />}
         <div className={styles.content}>
-
-        {fetchUserFailure && <div><p>Данные о пользователе не найдены</p></div>}
-
-        { !isLoading && !fetchUserFailure && 
-          <div className={styles.info_wrap}>
-            <img 
-              className={styles.avatar} 
-              src={userInfo.avatar_url} 
-              alt={userInfo.name}  
-            />
-            <div className={styles.info_content}>
-              <p><a 
-                className={styles.name} 
-                href={userInfo.html_url}
-                target='_blank'
-                rel="noopener noreferrer"
-              >
-                {userInfo.name}
-              </a></p>
-              <p className={styles.bio}>{userInfo.bio}</p>
-              <p className={styles.location}>{userInfo.location}</p>
-              <p className={styles.repos}>Repositories: {userInfo.public_repos}</p>
-            </div>
-          </div>
-        }
-
-        {fetchReposFailure && <div><p>Репозитории не найдены</p></div>}
-        
-        { !isLoading && !fetchReposFailure && 
-          <div>
-            <List className={styles.list}>
-              {repoList.map(repo => (
-                <ListItem 
-                  className={styles.list_item}
-                  key={repo.id}
-                >
+          {fetchUserFailure && <div><p>Данные о пользователе не найдены</p></div>}
+          { !isLoading && !fetchUserFailure && 
+            <Card className={styles.info_wrap}>
+              <img 
+                className={styles.avatar} 
+                src={userInfo.avatar_url} 
+                alt={userInfo.name}  
+              />
+              <div className={styles.about_wrap}>
+                <div className={styles.about}>
+                  <h1 className={styles.title}>
                   <a 
-                    className={styles.repo_link}
-                    href={repo.html_url}
+                    className={styles.name} 
+                    href={userInfo.html_url}
                     target='_blank'
-                    rel='noopener noreferrer' 
-                  >{repo.name}</a>
-                </ListItem>
-              ))}
-            </List>
-          </div>
-        }
+                    rel="noopener noreferrer"
+                  >
+                    {userInfo.name}
+                  </a></h1>
+                  <span className={styles.bio}>{userInfo.bio}</span>
+                  <span className={styles.location}> <ion-icon name="location-outline" />{userInfo.location}</span>
+                  <a className={styles.email} href="mailto:miheevaanastasiia@yandex.ru">
+                    <ion-icon name="at-outline" />
+                    <span>miheevaanastasiia@yandex.ru</span>
+                  </a>
+                </div>
+                 
+                <div className={styles.socials_wrap}>
+                  <div className={styles.socials}>
+                    <a 
+                        className={styles.telegram} 
+                        href='https://t.me/Anastasiia_Miheeva'
+                        target='_blank'
+                        rel="noopener noreferrer"
+                      >
+                        <TelegramIcon style={{fontSize: 30}}/>
+                    </a>
+                    <a 
+                      className={styles.github} 
+                      href={userInfo.html_url}
+                      target='_blank'
+                      rel="noopener noreferrer"
+                    >
+                      <GitHubIcon style={{fontSize: 24}} name='gh'/>
+                    </a>
+                   
+                    <a 
+                      className={styles.vk} 
+                      href='https://vk.com/id_93623'
+                      target='_blank'
+                      rel="noopener noreferrer"
+                    >
+                      <img src={vkIcon} style={{fontSize: 20}} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          }
+          <Repos />
         </div> 
       </div>
+      
     )
   }
 }
