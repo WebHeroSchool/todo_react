@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 
 const Preloader = () => (<Card className={styles.wrap}>
   
-  <img className={styles.preloader} src={load}/>
+  <img alt="Загрузка..." className={styles.preloader} src={load}/>
 </Card>);
 
 export default Preloader;

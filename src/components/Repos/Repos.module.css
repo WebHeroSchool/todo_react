@@ -7,22 +7,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid red;
 }
 
 .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   list-style: none;
   width: 400px;
+  height: 250px;
   padding: 10px;
+  border: 1px solid purple;
 }
 
 .list_item {
   width: 95%;
-  margin: 5px;
+  
   display: flex;
   flex-direction: column;
+  align-self: center;
   border: 1px solid #eee;
   border-radius: 5px;
+  padding: 10px 5px;
   
+}
+
+.repo_info {
+  border: 1px solid purple;
+  display: flex;
+  justify-content: space-around;
+  width: 100%
 }
 
 .repo_link {
@@ -30,7 +45,7 @@
   color: #535353; 
 }
 
-.repo_link:hover{
+.list_item:hover{
   box-shadow: 4px 4px 8px -5px rgba(104, 111, 106, 0.1);
   background: #F3F3F3;
 }
@@ -38,7 +53,11 @@
 .language {
   position: relative;
   min-width: 80px;
-  padding-left: 22px; 
+  padding-left: 15px; 
+}
+
+.html, .css, .js {
+  font-size: 14px;
 }
 
 .html:before, .css:before, .js:before {
@@ -61,4 +80,13 @@
 
 .js:before {
   background: #ffdc5a;
+}
+
+.star:before {
+  content: url('./../Img/Star.svg');
+
+}
+
+.fork:before {
+  content: url('./../Img/fork.svg');
 }

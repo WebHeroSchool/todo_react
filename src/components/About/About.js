@@ -1,24 +1,25 @@
 import React from 'react';
 import { Octokit }  from '@octokit/rest';
 import styles from './About.module.css';
-import Repos from '../Repos/Repos';
-
+import Preloader from '../Preloader/Preloader';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import vkIcon from './../Img/vk.svg';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import Preloader from '../Preloader/Preloader';
-
+import Repos from '../Repos/Repos';
 
 const octokit = new Octokit();
 
 class About extends React.Component {
-
   state = {
-    isLoading: true,
+    isLoadingUser: true,
+    isLoadingRepos: true,
     fetchUserFailure: false,
-    userInfo: {}
+    fetchReposFailure: false,
+    userInfo: {},
+    repoList: [],
+    firstRepo: 0,
+    lastRepo: 4
   }
 
   componentDidMount() {
@@ -26,27 +27,28 @@ class About extends React.Component {
       username: 'anastasiamiheeva'
     }).then(({ data }) => {
       this.setState({
-        isLoading: false,
+        isLoadingUser: false,
         fetchUserFailure: false,
         userInfo: data
       })
     }).catch(err => {
       this.setState({
-        isLoading: false,
+        isLoadingUser: false,
         fetchUserFailure: true
       })
-    });
+    })
+
   }
 
   render() {
-    const { isLoading, userInfo, fetchUserFailure } = this.state;
-    return ( 
-      <div className={styles.wrap}>
-        { isLoading && <Preloader />}
-        <div className={styles.content}>
-          {fetchUserFailure && <div><p>Данные о пользователе не найдены</p></div>}
-          { !isLoading && !fetchUserFailure && 
-            <Card className={styles.info_wrap}>
+    const {isLoadingRepos, isLoadingUser, fetchUserFailure, userInfo} = this.state;
+    return (
+      <div> 
+      {isLoadingUser && isLoadingRepos 
+        ? <Preloader />
+        : <div>
+        {!fetchUserFailure 
+          ? <Card className={styles.info_wrap}>
               <img 
                 className={styles.avatar} 
                 src={userInfo.avatar_url} 
@@ -70,7 +72,7 @@ class About extends React.Component {
                     <span>miheevaanastasiia@yandex.ru</span>
                   </a>
                 </div>
-                 
+                
                 <div className={styles.socials_wrap}>
                   <div className={styles.socials}>
                     <a 
@@ -87,9 +89,9 @@ class About extends React.Component {
                       target='_blank'
                       rel="noopener noreferrer"
                     >
-                      <GitHubIcon style={{fontSize: 24}} name='gh'/>
+                      <GitHubIcon style={{fontSize: 24}} />
                     </a>
-                   
+                  
                     <a 
                       className={styles.vk} 
                       href='https://vk.com/id_93623'
@@ -102,11 +104,11 @@ class About extends React.Component {
                 </div>
               </div>
             </Card>
-          }
-          <Repos />
-        </div> 
+          : <div><p>Данные о пользователе не найдены</p></div>
+        }
+        <Repos />
       </div>
-      
+      }</div>
     )
   }
 }
