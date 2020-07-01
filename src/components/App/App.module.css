@@ -1,19 +1,20 @@
 body {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif; 
+  font-family: 'Roboto', sans-serif;
   height: 100vh;
+  background: linear-gradient(90deg, #FFC0CB 0%, #B2FEFC 90%);
 }
 
 .wrap {
-  background: linear-gradient(90deg, #FFC0CB 0%, #D5D5D8 100%);
-  border: 1px solid #eee;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center; 
   align-items: center; 
   margin: auto;
-  width: 700px;
-  min-height: 600px;
+  width: 750px;
+  min-height: 500px;
+  border: 2px solid red;
+  /* height: 600px; */
+  
 }
 
 .link_wrap {
@@ -24,10 +25,22 @@ body {
  
 .link {
   text-decoration: none;
-  background: #F6EAED;
-  color: grey;
+  background: #E2E2E2; 
+  color: #BE848A;
+  font-weight: bold;
+  text-transform: uppercase;
   border: 1px solid #c4c4c4;
-  border-radius: 5px;
+  border-radius: 37px;
   padding: 10px 20px;
   margin: 15px 0; 
+  width: 100px;
+  text-align: center;
 }
+
+.active_link {
+ opacity: 0.5;
+}
+
+.link:hover {
+  background: #eee;
+ }

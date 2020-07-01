@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { Octokit }  from '@octokit/rest';
 import styles from './Repos.module.css';
 import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
 
 const octokit = new Octokit();
 
@@ -11,12 +12,15 @@ class Repos extends React.Component {
     fetchReposFailure: false,
     repoList: [],
     firstRepo: 0,
-    lastRepo: 4
+    lastRepo: 3
   }
   componentDidMount() {
+    const user = 'anastasiamiheeva';
     octokit.repos.listForUser({
-      username: 'anastasiamiheeva'
+      username: user
     }).then(({ data }) => {
+      console.log(data);
+      
       this.setState({
         fetchReposFailure: false,
         repoList: data
@@ -31,8 +35,8 @@ class Repos extends React.Component {
   previousPage = () => {
     if (this.state.firstRepo !== 0 ) {
         this.setState( state => ({
-          firstRepo: state.firstRepo - 4,
-          lastRepo: state.lastRepo - 4
+          firstRepo: state.firstRepo - 3,
+          lastRepo: state.lastRepo - 3
         })); 
     }
   };
@@ -40,8 +44,8 @@ class Repos extends React.Component {
   nextPage = () => {
     if(this.state.lastRepo < this.state.repoList.length) {
       this.setState( state => ({
-        firstRepo: state.firstRepo + 4,
-        lastRepo: state.lastRepo + 4
+        firstRepo: state.firstRepo + 3,
+        lastRepo: state.lastRepo + 3
       }));
     }
   };
@@ -53,7 +57,7 @@ class Repos extends React.Component {
       <div>
         {!fetchReposFailure
           ? <Card className={styles.repo_wrap}>
-            <p classnames={styles.text}>Список репозиториев:</p>
+            <h2 className={styles.list_text}>Список репозиториев:</h2>
             <ol className={styles.list}>
             {repoPag.map(repo => (
               <li
@@ -71,7 +75,8 @@ class Repos extends React.Component {
                     [styles.language]: true,
                     [styles.html]: repo.language === 'HTML',
                     [styles.css]: repo.language === 'CSS',
-                    [styles.js]: repo.language === 'JavaScript'
+                    [styles.js]: repo.language === 'JavaScript',
+                    [styles.no_lang]: repo.language === null
                   })}>
                     {repo.language}
                   </span>
@@ -92,7 +97,7 @@ class Repos extends React.Component {
               <button
                 className={styles.pagination_btn}
                 onClick={this.previousPage}
-                disabled={firstRepo < 4}
+                disabled={firstRepo < 3}
               >назад
               </button>
               <button
@@ -103,7 +108,7 @@ class Repos extends React.Component {
               </button>
             </div>
           </Card>
-        : <div><p>Репозитории не найдены</p></div>
+        : <div className={styles.error_wrap}><p className={styles.error}>Репозитории не найдены</p></div>
         }
       </div>
     )

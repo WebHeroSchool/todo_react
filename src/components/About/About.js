@@ -23,8 +23,9 @@ class About extends React.Component {
   }
 
   componentDidMount() {
+    const user = 'anastasiamiheeva';
     octokit.users.getByUsername({
-      username: 'anastasiamiheeva'
+      username: user
     }).then(({ data }) => {
       this.setState({
         isLoadingUser: false,
@@ -43,7 +44,7 @@ class About extends React.Component {
   render() {
     const {isLoadingRepos, isLoadingUser, fetchUserFailure, userInfo} = this.state;
     return (
-      <div> 
+      <div className={styles.wrap}> 
       {isLoadingUser && isLoadingRepos 
         ? <Preloader />
         : <div>
@@ -65,12 +66,14 @@ class About extends React.Component {
                   >
                     {userInfo.name}
                   </a></h1>
+                  
                   <span className={styles.bio}>{userInfo.bio}</span>
                   <span className={styles.location}> <ion-icon name="location-outline" />{userInfo.location}</span>
                   <a className={styles.email} href="mailto:miheevaanastasiia@yandex.ru">
                     <ion-icon name="at-outline" />
                     <span>miheevaanastasiia@yandex.ru</span>
                   </a>
+                  
                 </div>
                 
                 <div className={styles.socials_wrap}>
@@ -104,7 +107,7 @@ class About extends React.Component {
                 </div>
               </div>
             </Card>
-          : <div><p>Данные о пользователе не найдены</p></div>
+          : <div className={styles.error_wrap}><p className={styles.error}>Данные о пользователе не найдены</p></div>
         }
         <Repos />
       </div>

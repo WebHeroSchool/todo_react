@@ -1,12 +1,24 @@
 .wrap {
   display: flex;
   justify-content: center;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  align-items: center;
+
+  width: 650px ; 
+  /* border: 3px solid green; */
+  box-shadow: 0px 7px 40px -5px rgba(104, 111, 106, 0.18); 
+  /* background: url('https://i.pinimg.com/564x/73/0f/b0/730fb003629dfea6e194563529d0d3c7.jpg'); */
+  background: url('https://i.pinimg.com/564x/d2/d6/67/d2d66737eba2daea6bd833c64b25f096.jpg');
+  background-size: cover ;
+  filter: drop-shadow(0 0 5px pink);
+  border-radius: 10px;
+  height: 650px;
 }
 .content {
   display: flex; 
   flex-direction: column;
   width: 500px; 
+  border: 1px solid red;
 }
 
 .title {

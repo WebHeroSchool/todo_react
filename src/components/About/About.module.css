@@ -3,9 +3,15 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* width: ; */
-  border: 1px solid green;
-  box-shadow: 0px 7px 40px -5px rgba(104, 111, 106, 0.18);
+  width: 650px ; 
+  /* border: 3px solid green; */
+  box-shadow: 0px 7px 40px -5px rgba(104, 111, 106, 0.18); 
+  /* background: url('https://i.pinimg.com/564x/73/0f/b0/730fb003629dfea6e194563529d0d3c7.jpg'); */
+  background: url('https://i.pinimg.com/564x/d2/d6/67/d2d66737eba2daea6bd833c64b25f096.jpg');
+  background-size: cover ;
+  filter: drop-shadow(0 0 5px pink);
+  border-radius: 10px;
+  min-height: 650px; 
 }
 
 
@@ -13,7 +19,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  
 }
 
 .preloader {
@@ -30,6 +35,7 @@
   justify-content: space-around;
   align-items: center;
   padding: 15px;
+  width: 500px;
 }
 
 .about_wrap {
@@ -60,19 +66,20 @@
 }
 
 .title {
-  margin: 0 0 15px 0;
+  margin: 0 0 5px 0;
 }       
 
 .name {
   text-decoration: none;
   font-size: 30px;
-  color: #FFC4C4;
+  color: #E996A0;
   
 }
 
-.bio, .location, .repos {
-  color: #535353;
+.bio, .location, .repos, .email {
+  color: #999;
   font-size: 14px;
+  font-style: italic;
 }
 
 .avatar {
@@ -86,12 +93,14 @@
   display: flex;
 }
 
+.bio {
+  font-weight: bold;
+}
+
 .email {
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-size: 14px;
-  color: #535353;
 }
 
 
@@ -99,5 +108,17 @@
   color: #999;
   width: 30px;
   height: 15px;
+}
+
+.error_wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  color: #E95A6A;
+  text-transform: uppercase;
+  
 }
 
