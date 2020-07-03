@@ -12,14 +12,9 @@ const octokit = new Octokit();
 
 class About extends React.Component {
   state = {
-    isLoadingUser: true,
-    isLoadingRepos: true,
+    isLoading: true,
     fetchUserFailure: false,
-    fetchReposFailure: false,
-    userInfo: {},
-    repoList: [],
-    firstRepo: 0,
-    lastRepo: 4
+    userInfo: {}
   }
 
   componentDidMount() {
@@ -28,13 +23,13 @@ class About extends React.Component {
       username: user
     }).then(({ data }) => {
       this.setState({
-        isLoadingUser: false,
+        isLoading: false,
         fetchUserFailure: false,
         userInfo: data
       })
     }).catch(err => {
       this.setState({
-        isLoadingUser: false,
+        isLoading: false,
         fetchUserFailure: true
       })
     })
@@ -42,10 +37,10 @@ class About extends React.Component {
   }
 
   render() {
-    const {isLoadingRepos, isLoadingUser, fetchUserFailure, userInfo} = this.state;
+    const { isLoading, fetchUserFailure, userInfo} = this.state;
     return (
       <div className={styles.wrap}> 
-      {isLoadingUser && isLoadingRepos 
+      { isLoading 
         ? <Preloader />
         : <div>
         {!fetchUserFailure 

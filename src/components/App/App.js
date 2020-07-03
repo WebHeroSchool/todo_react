@@ -9,7 +9,7 @@ const App = () => (
   <Router>
     <div className={styles.wrap}>
       <div className={styles.link_wrap}>
-        <NavLink exact={"true"} to="/" className={styles.link} activeClassName={styles.active_link}>Обо мне</NavLink>
+        <NavLink exact to="/" className={styles.link} activeClassName={styles.active_link}>Обо мне</NavLink>
         <NavLink to="/todo" className={styles.link} activeClassName={styles.active_link}>Дела</NavLink>
       </div>
       <div>

@@ -15,13 +15,14 @@ const Todo = () => {
       { id: 3, value: 'Сделать зарядку', isDone: false }
     ],
     count: 4,
-    empty: false
+    empty: false,
+    allItems: false
   }
 
   const [items, setItems] = useState(initialState.items);
   const [count, setCount] = useState(initialState.count);
   const [empty, setEmpty] = useState(initialState.empty);
-
+  
   const onClickDone = id => {
     const newItemList = items.map(item => {
       const newItem = { ...item };
@@ -40,8 +41,15 @@ const Todo = () => {
     setCount(count => count - 1);
   }
 
-  const itemsToDo = items.filter(item => item.isDone === false)
- 
+  const itemsToDo = items.filter(item => item.isDone === false);
+  // const allItems = items.length;
+
+  const onClickClearCompleted = () => {
+    const newItemList = items.filter(item => item.isDone === false);
+    setItems(newItemList);
+    setCount(count => count - 1);
+  }
+
   const onClickAdd = value => {
     if (value !== '') {
       const newItemList = [
@@ -70,7 +78,7 @@ const Todo = () => {
             onClickDone={onClickDone}
             onClickDelete={onClickDelete}
           />
-          <Footer count={itemsToDo.length} />
+          <Footer count={itemsToDo.length}  onClickClearCompleted={onClickClearCompleted}  />
         </CardContent> 
       </Card>
     </div>
