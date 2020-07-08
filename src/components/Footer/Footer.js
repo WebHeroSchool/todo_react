@@ -1,26 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './Footer.module.css';
-import PropTypes from 'prop-types'
+import {TaskListContext} from '../../context/TaskListContext';
+import SortingItems from '../SortingItems/SortingItems';
 
+const Footer = () => {
+  const {onClickClearCompleted} = useContext(TaskListContext);
 
-const Footer = ({ count, onClickClearCompleted}) => (
-  <footer className={styles.wrap}>
-    <div className={styles.content}>
-      <div><span className={styles.items_count}>{count} items left</span></div>
-      <div>
-        <button className={styles.button}>All  </button>
-        <button className={styles.button}>Active  </button>
-        <button className={styles.button}>Completed </button>
+  return (
+    <footer className={styles.wrap}>
+      <div className={styles.content}>
+        <SortingItems /> 
+        <div className={styles.delete}>
+          <button onClick={() => onClickClearCompleted()} className={styles.btn_delete}>Clear completed</button>
+        </div>
       </div>
+    </footer>
+  );
+}
 
-      <div className={styles.delete}>
-        <button onClick={onClickClearCompleted} className={styles.btn_delete}>Clear completed</button>
-      </div>
-    </div>
-  </footer>);
-
-Footer.propTypes = {
-  count: PropTypes.number.isRequired
-};
-
-export default Footer;
+export default Footer

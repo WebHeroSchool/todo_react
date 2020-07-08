@@ -1,65 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types'
+import React, {useContext, useState, useEffect} from 'react';
 import styles from './InputItem.module.css';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import {TaskListContext} from '../../context/TaskListContext';
 
-class InputItem extends React.Component {
-    state = {
-        inputValue: ''
-    };
+const InputItem = () => {
+   const {onClickAdd , clearList, editTask, editItem } = useContext(TaskListContext);
 
-    onButtonClick = () => {
-        this.setState({
-            inputValue: ''
-        });
-        this.props.onClickAdd(this.state.inputValue);
-    };
+   const[value, setValue] = useState('')
+   
+   const handleChange = e => {
+    setValue(e.target.value)
+   };
 
-    render() {
-        const emptyField = this.props.empty;
-        let inputField;
-        
-        if (!emptyField) {
-            inputField = <TextField 
-            label="What needs to be done?"
-            id="standard-full-width"
-            margin="normal"
-            fullWidth
-            value={this.state.inputValue}
-            onChange={event => this.setState({ inputValue: event.target.value.toUpperCase() })}
-            />
-        } else {
-            inputField = <TextField
-            error
-            id="standard-error"
-            label="Please add the task."
-            margin="normal"
-            fullWidth
-            value={this.state.inputValue}
-            onChange={event => this.setState({ inputValue: event.target.value.toUpperCase() })}
-            />  
-        }
-
-        return (    
-            <div className={styles.wrap}>
-                { inputField }
-                <Button 
-                    color="secondary"
-                    variant="outlined"
-                    onClick={this.onButtonClick}  
-                >
-                    Add the task
-                </Button>
-            </div>
-        )
+   const handleSubmit = e => {
+    e.preventDefault()
+    if(editItem === null) {
+        onClickAdd (value)
+        setValue('')
+    } else {
+        editTask(value, editItem.id)
     }
+    
+   };
+
+   useEffect(() => {
+    if(editItem !== null) {
+        setValue(editItem.value)
+    } else {
+        setValue('')
+    }
+   }, [editItem]);
+
+
+    return (
+        <form onSubmit={handleSubmit} className={styles.form}>
+            <input 
+                onChange={handleChange}
+                value={value}
+                type="text" 
+                className={styles.task_input}
+                placeholder="What needs to be done?"
+                required
+            />
+            <div className={styles.buttons}>
+                <button type="submit" className={styles.btn} className={styles.add_task}>
+                {editItem ? 'Edit Task' : 'Add Task'}</button>
+                <button onClick={clearList} className={styles.btn} className={styles.clear_btn}>Clear all</button>
+            </div>
+            
+        </form>
+    )
 }
 
-InputItem.propTypes = {
-    onClickAdd: PropTypes.func.isRequired,
-    
-};
-
-
 export default InputItem;
+

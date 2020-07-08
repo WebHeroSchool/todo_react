@@ -2,6 +2,7 @@ body {
   font-family: 'Roboto', sans-serif;
   height: 100vh;
   background: linear-gradient(90deg, #FFC0CB 0%, #B2FEFC 90%);
+  
 }
 
 .wrap {
@@ -12,7 +13,7 @@ body {
   margin: auto;
   width: 750px;
   min-height: 500px;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   /* height: 600px; */
   
 }

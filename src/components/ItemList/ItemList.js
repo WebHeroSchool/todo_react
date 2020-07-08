@@ -1,31 +1,25 @@
-import React from 'react';
-import Item from '../Item/Item';
+import React, {useContext} from 'react';
+import {TaskListContext} from '../../context/TaskListContext';
 import styles from './ItemList.module.css'
-import PropTypes from 'prop-types'
+import Item from '../Item/Item';
 
 
-const ItemList = ({ items, onClickDone, onClickDelete }) => (
-  <div className={styles.wrap}>
-    <ul  className={styles.item_list}>
-      {items.map(item => <li  key={item.id} className={styles.item}>
-        <Item 
-          onClickDone={onClickDone}
-          onClickDelete={onClickDelete}
-          value={item.value}
-          isDone={item.isDone}
-          id={item.id}
-          
-        />
-      </li>)}
-    </ul>
-  </div>
-);
-
-ItemList.propTypes = {
-  items: PropTypes.array.isRequired,
-  onClickDone: PropTypes.func.isRequired,
-  onClickDelete: PropTypes.func.isRequired
-};
-
-export default ItemList;
-
+const ItemList = () => {
+  const {sortingItems} = useContext(TaskListContext)
+   return (
+    <div className={styles.wrap} >
+     {sortingItems.length ? (
+       <ul className={styles.item_list}>
+         {sortingItems.map(task => {
+           return <Item task={task} key={task.id} />
+         })}
+       </ul>)
+       : (
+         <div className={styles.no_tasks}>No tasks</div>
+       ) 
+     }
+    </div>
+  )
+ }
+ 
+ export default ItemList

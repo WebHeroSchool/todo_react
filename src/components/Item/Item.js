@@ -1,57 +1,50 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import styles from './Item.module.css';
 import classnames from 'classnames';
-import styles from './Item.module.css'
-import PropTypes from 'prop-types'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import Favorite from '@material-ui/icons/Favorite';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import IconButton from '@material-ui/core/IconButton';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import  {TaskListContext} from '../../context/TaskListContext';
 
-class Item extends React.Component {
-    render() {
-        const { value, isDone, onClickDone, id, onClickDelete} = this.props;
-        return (
+const Item = ({task}) => {
+    const {onClickDelete, findItem, onClickDone} = useContext(TaskListContext)
+    return (
+  <li className={styles.item}>
+    <div className={styles.content}>
+      <FormControlLabel
+        control={
+            <Checkbox 
+                checked={task.isDone}
+                icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                checkedIcon={<CheckBoxIcon fontSize="small" />}
+                onClick={() => onClickDone(task.id)}
+            />
+            }
+            label={<span className={
+                classnames({
+                    [styles.item]: true,
+                    [styles.done]: task.isDone
+                })
+            }>{task.value}</span>}
+            />
 
-            <div className={styles.wrap}>
-                <FormControlLabel
-                control={
-                <Checkbox 
-                checked={isDone}
-                color="secondary"
-                icon={<FavoriteBorder />} 
-                checkedIcon={<Favorite />} 
-                onClick={() => onClickDone(id)}
-                />
-                }
-                label={<span className={
-                    classnames({
-                        [styles.item]: true,
-                        [styles.done]: isDone
-                    })
-                }>{ value }</span>}
-                />
-
-                <div onClick={() => onClickDelete(id)}>
-                    <IconButton aria-label='delete' >
-                    <DeleteOutlinedIcon fontSize='small' />
-                    </IconButton>
-                </div>
-            </div>   
-        )
-    }   
+        
+            {/* <span onClick={() => onClickDone(task.id)}>{task.value}</span> */}
+            
+            <div className={styles.btn_wrap}>
+            <button onClick={() => onClickDelete(task.id)}  className={styles.task_btn}>
+                <i style={{color: '#999',fontSize: 14}} className='fas fa-trash-alt' />
+            </button>
+            <button onClick={() => findItem(task.id)}  className={styles.task_btn}>
+                <i style={{color: '#999',fontSize: 14}} className='fas fa-pen'></i>
+            </button>
+            </div>
+        </div>
+    </li>
+        
+)
 }
 
-Item.defaultProps = {
-    value: 'task not found',
-    isDone: false
-};
-
-Item.propTypes = {
-    value: PropTypes.string.isRequired,
-    isDone: PropTypes.bool.isRequired
-};
-
-export default Item; 
+export default Item;
 

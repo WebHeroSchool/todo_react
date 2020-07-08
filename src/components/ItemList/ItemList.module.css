@@ -1,9 +1,24 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+}
+
 .item_list {
     padding: 0; 
-    width: 90%;
+    width: 80%;
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
 }
    
-.icon_btn {
+/* .icon_btn {
     display: none;
+} */
+
+
+
+
+.empty {
+    font-style: italic;
+    color: #999; 
 }

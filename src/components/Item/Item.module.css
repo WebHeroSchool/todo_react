@@ -13,4 +13,27 @@
     color: #FFC0CB;
     text-decoration: line-through;
 }
+.content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.btn_wrap {
+    display: flex;
+    
+}
+
+.task_btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+
+
+  
 
