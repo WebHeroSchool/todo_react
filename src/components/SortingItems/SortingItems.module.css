@@ -1,7 +1,6 @@
 
-.sorting {
+.wrap {
   display: flex;
-  flex-flow: row;
   align-items: center;
 }
 
@@ -20,7 +19,15 @@
 
 .button_all {
   background: #FFC0CB;
-  border-radius: 23px;
+  border-radius: 25px;
+  color: #fff;
+}
+
+.button_all .count {
+  color: #fff;
+}
+
+.button_active .count {
   color: #fff;
 }
 
@@ -36,15 +43,6 @@
   font-weight: bold;
   margin: 0;
 }
-
-.button_all .count {
-  color: #fff;
-}
-.button_active .count {
-  color: #fff;
-}
-
-
 
 .button:hover .count {
   color: #fff;

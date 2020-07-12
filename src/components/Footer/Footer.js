@@ -5,7 +5,6 @@ import SortingItems from '../SortingItems/SortingItems';
 
 const Footer = () => {
   const {onClickClearCompleted} = useContext(TaskListContext);
-
   return (
     <footer className={styles.wrap}>
       <div className={styles.content}>
@@ -18,4 +17,4 @@ const Footer = () => {
   );
 }
 
-export default Footer
+export default Footer;

@@ -3,14 +3,12 @@ import styles from './SortingItems.module.css';
 import classnames from 'classnames';
 import {TaskListContext} from '../../context/TaskListContext';
 
-
-
 const SortingItems = () => {
 
   const {allItems, activeItems, complitedItems, sortItem, onClickSorting} = useContext(TaskListContext)
 
   return (
-  <div className={styles.sorting}>
+  <div className={styles.wrap}>
     <div className={styles.button_wrap}>
       <button
           className={classnames({

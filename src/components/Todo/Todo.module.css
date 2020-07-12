@@ -1,29 +1,37 @@
 .wrap {
   display: flex;
   justify-content: center;
-  /* font-family: 'Roboto', sans-serif; */
   align-items: center;
-
-  width: 650px ; 
-  /* border: 3px solid green; */
-  box-shadow: 0px 7px 40px -5px rgba(104, 111, 106, 0.18);
-  background: url('https://i.pinimg.com/564x/d2/d6/67/d2d66737eba2daea6bd833c64b25f096.jpg');
-  background-size: cover ;
+  width: 100%; 
   filter: drop-shadow(0 0 5px pink);
   border-radius: 10px;
   height: 650px;
+  min-width: 360px;
 }
+
 .content {
   display: flex; 
-  
   flex-direction: column;
   justify-content: space-around;
   width: 500px; 
-  /* border: 1px solid red; */
-  min-height: 500px; 
+  height: 500px;
+  min-width: 300px; 
 }
 
-.title {
-  color: pink;
-  text-align: center;
+@media (max-width: 500px) {
+  .wrap {
+    width: 420px;
+  }
+  .content {
+    width: 350px
+  }
+}
+
+@media (max-width: 400px) {
+  .wrap {
+    width: 420px;
+  }
+  .content {
+    width: 300px
+  }
 }

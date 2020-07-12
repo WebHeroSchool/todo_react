@@ -8,6 +8,7 @@ import InputItem from '../InputItem/InputItem';
 import TodoHeader from '../TodoHeader/TodoHeader';
 import Footer from '../Footer/Footer';
 
+
 const Todo = () => {
   return (
     <TaskListContextProvider>
@@ -25,4 +26,4 @@ const Todo = () => {
   )
 }
 
-export default Todo
+export default Todo;

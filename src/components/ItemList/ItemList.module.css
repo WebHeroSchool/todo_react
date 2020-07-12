@@ -1,24 +1,25 @@
 .wrap {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .item_list {
-    padding: 0; 
-    width: 80%;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
+  padding: 0; 
+  width: 80%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 200px;
 }
    
-/* .icon_btn {
-    display: none;
-} */
+.no_tasks {
+  font-style: italic;
+  color: #999;
+}
 
-
-
-
-.empty {
-    font-style: italic;
-    color: #999; 
+@media (max-width: 500px) {
+  .item_list {
+    width: 50%;
+  }
 }

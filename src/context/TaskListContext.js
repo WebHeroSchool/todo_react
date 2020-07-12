@@ -98,7 +98,6 @@ const TaskListContextProvider = props => {
       onClickDone,
       onClickClearCompleted,
       sortItem
-
     }}>
       {props.children}
     </TaskListContext.Provider>

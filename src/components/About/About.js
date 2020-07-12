@@ -2,7 +2,6 @@ import React from 'react';
 import { Octokit }  from '@octokit/rest';
 import styles from './About.module.css';
 import Preloader from '../Preloader/Preloader';
-import Card from '@material-ui/core/Card';
 import vkIcon from './../Img/vk.svg';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -44,7 +43,7 @@ class About extends React.Component {
         ? <Preloader />
         : <div>
         {!fetchUserFailure 
-          ? <Card className={styles.info_wrap}>
+          ? <div className={styles.info_wrap}>
               <img 
                 className={styles.avatar} 
                 src={userInfo.avatar_url} 
@@ -56,7 +55,7 @@ class About extends React.Component {
                   <a 
                     className={styles.name} 
                     href={userInfo.html_url}
-                    target='_blank'
+                    target="_blank"
                     rel="noopener noreferrer"
                   >
                     {userInfo.name}
@@ -75,8 +74,8 @@ class About extends React.Component {
                   <div className={styles.socials}>
                     <a 
                         className={styles.telegram} 
-                        href='https://t.me/Anastasiia_Miheeva'
-                        target='_blank'
+                        href="https://t.me/Anastasiia_Miheeva"
+                        target="_blank"
                         rel="noopener noreferrer"
                       >
                         <TelegramIcon style={{fontSize: 30}}/>
@@ -84,7 +83,7 @@ class About extends React.Component {
                     <a 
                       className={styles.github} 
                       href={userInfo.html_url}
-                      target='_blank'
+                      target="_blank"
                       rel="noopener noreferrer"
                     >
                       <GitHubIcon style={{fontSize: 24}} />
@@ -92,16 +91,16 @@ class About extends React.Component {
                   
                     <a 
                       className={styles.vk} 
-                      href='https://vk.com/id_93623'
-                      target='_blank'
+                      href="https://vk.com/id_93623"
+                      target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src={vkIcon} style={{fontSize: 20}} />
+                      <img alt="vk" src={vkIcon} style={{fontSize: 20}} />
                     </a>
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           : <div className={styles.error_wrap}><p className={styles.error}>Данные о пользователе не найдены</p></div>
         }
         <Repos />

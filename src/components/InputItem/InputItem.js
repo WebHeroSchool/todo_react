@@ -19,7 +19,6 @@ const InputItem = () => {
     } else {
         editTask(value, editItem.id)
     }
-    
    };
 
    useEffect(() => {
@@ -29,7 +28,6 @@ const InputItem = () => {
         setValue('')
     }
    }, [editItem]);
-
 
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -42,11 +40,10 @@ const InputItem = () => {
                 required
             />
             <div className={styles.buttons}>
-                <button type="submit" className={styles.btn} className={styles.add_task}>
+                <button type="submit" className={styles.add_task}>
                 {editItem ? 'Edit Task' : 'Add Task'}</button>
-                <button onClick={clearList} className={styles.btn} className={styles.clear_btn}>Clear all</button>
-            </div>
-            
+                <button onClick={clearList} className={styles.clear_btn}>Clear all</button>
+            </div>  
         </form>
     )
 }
