@@ -62,12 +62,29 @@ class About extends React.Component {
                   </a></h1>
                   
                   <span className={styles.bio}>{userInfo.bio}</span>
-                  <span className={styles.location}> <ion-icon name="location-outline" />{userInfo.location}</span>
                   <a className={styles.email} href="mailto:miheevaanastasiia@yandex.ru">
                     <ion-icon name="at-outline" />
                     <span>miheevaanastasiia@yandex.ru</span>
                   </a>
-                  
+                  <div className={styles.portfolio}>
+                    <h2>Портфолио:</h2>  
+                    <a 
+                      className={styles.portfolio_item} 
+                      href="https://anastasiamiheeva.github.io/LOCO_project/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Сайт интернет магазина
+                    </a>
+                    <a 
+                      className={styles.portfolio_item} 
+                      href="https://webheroschool.github.io/JSgame/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Игра "Find Bug"
+                    </a>
+                  </div>
                 </div>
                 
                 <div className={styles.socials_wrap}>
