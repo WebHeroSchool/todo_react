@@ -6,12 +6,13 @@ import Item from '../Item/Item';
 
 const ItemList = () => {
   const {sortingItems} = useContext(TaskListContext);
+
    return (
     <div className={styles.wrap} >
      {sortingItems.length ? (
        <ul className={styles.item_list}>
         {sortingItems.map(task => {
-          return <Item task={task} key={task.id} />
+          return <Item task={task} key={task.id}  />
         })}
        </ul>)
        : (

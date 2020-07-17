@@ -4,7 +4,7 @@ import styles from './TodoHeader.module.css';
 const TodoHeader = () => {
   return (
     <div className={styles.header}>
-      <h1 className={styles.title}>Task Manager</h1>
+      <h1 className={styles.title}>Todo list</h1>
     </div>
   )
 }

@@ -1,4 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Hi! Nice to see you here! 
+
+This is my final project at WebHeroSchool based on the React.js .
+The app contains my personal page with portfolio and contacts, as well as links to Github repositories. Also this is an application that allows you to create a personal task list.
+
+
 
 ## Available Scripts
 

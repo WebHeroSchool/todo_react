@@ -11,15 +11,30 @@ const TaskListContextProvider = props => {
   const [tasks, setTasks] = useState(initialState);
   const [editItem, setEditItem] = useState(null);
   const [sortItem, setSortItem] = useState('all');
-  
+  const [theSame, setTheSame] = useState(false);
+
   const allItems = tasks;
   const activeItems = tasks.filter(item => !item.isDone);
   const complitedItems = tasks.filter(item => item.isDone);
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks))
-  }, [tasks])
+  }, [tasks]);
 
+
+  const onClickAdd  = (value) => {
+    setTheSame(false);
+      
+    tasks.forEach(item => {
+      if (item.value === value) {
+      setTheSame(true);
+      value = false;
+    }});
+     
+    if (value) {
+      setTasks([...tasks, { value, id: uuid(), isDone: false }]); 
+    } 
+  }
   
   const onClickDone = id => {
     const newItemList = tasks.map(item => {
@@ -37,11 +52,6 @@ const TaskListContextProvider = props => {
     const newItemList = tasks.filter(item => item.isDone === false);
     setTasks(newItemList);
     
-  }
-
-  const onClickAdd  = (value) => {
-    setTasks([...tasks, { value, id: uuid(), isDone: false }]);
-     
   }
 
   const onClickDelete = id => {
@@ -97,7 +107,8 @@ const TaskListContextProvider = props => {
       onClickSorting,
       onClickDone,
       onClickClearCompleted,
-      sortItem
+      sortItem,
+      theSame
     }}>
       {props.children}
     </TaskListContext.Provider>

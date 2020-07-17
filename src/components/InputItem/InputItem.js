@@ -3,13 +3,14 @@ import styles from './InputItem.module.css';
 import {TaskListContext} from '../../context/TaskListContext';
 
 const InputItem = () => {
-   const {onClickAdd , clearList, editTask, editItem } = useContext(TaskListContext);
+   const {onClickAdd , clearList, editTask, editItem, theSame } = useContext(TaskListContext);
 
-   const[value, setValue] = useState('')
+   const[value, setValue] = useState('');
    
    const handleChange = e => {
-    setValue(e.target.value)
+    setValue(e.target.value.toLowerCase())
    };
+
 
    const handleSubmit = e => {
     e.preventDefault()
@@ -35,9 +36,10 @@ const InputItem = () => {
                 onChange={handleChange}
                 value={value}
                 type="text" 
-                className={styles.task_input}
-                placeholder="What needs to be done?"
+                className={!theSame ? styles.task_input : styles.task_input_error}
+                placeholder={!theSame ? "What needs to be done?" : "The task's already been added"}
                 required
+                
             />
             <div className={styles.buttons}>
                 <button type="submit" className={styles.add_task}>
