@@ -1,9 +1,10 @@
 ## Hi! Nice to see you here! 
 
 This is my final project at WebHeroSchool based on the React.js .
-The app contains my personal page with portfolio and contacts, as well as links to Github repositories. Also this is an application that allows you to create a personal task list.
-
-
+The app contains my personal page with portfolio and contacts, as well as links to Github repositories. 
+Also this is an application that allows you to create a personal task list.
+<br />
+You can view the published version [here](https://todo-app-b4058.firebaseapp.com/).
 
 ## Available Scripts
 
