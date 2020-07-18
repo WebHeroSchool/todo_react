@@ -1,15 +1,37 @@
 .wrap {
   display: flex;
   justify-content: center;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  align-items: center;
+  width: 100%; 
+  filter: drop-shadow(0 0 5px pink);
+  border-radius: 10px;
+  height: 650px;
+  min-width: 360px;
 }
+
 .content {
   display: flex; 
   flex-direction: column;
+  justify-content: space-around;
   width: 500px; 
+  height: 500px;
+  min-width: 300px; 
 }
 
-.title {
-  color: pink;
-  text-align: center;
+@media (max-width: 500px) {
+  .wrap {
+    width: 420px;
+  }
+  .content {
+    width: 350px
+  }
+}
+
+@media (max-width: 400px) {
+  .wrap {
+    width: 420px;
+  }
+  .content {
+    width: 300px
+  }
 }
